@@ -1,4 +1,4 @@
-iFROM debian:jessie
+FROM debian:jessie
 MAINTAINER Erik Kellener [erik@kellener.com]
 
 # apt netatalk
