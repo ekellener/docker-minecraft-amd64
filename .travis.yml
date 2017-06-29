@@ -12,6 +12,11 @@ install:
 - wget -O BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar 
 - java -jar BuildTools.jar
 - docker build -t ekellener/minecraft-arm:12t -f Dockerfile.arm .
-script:
-- docker build -t ekellener/minecraft-arm:12t -f Dockerfile.arm .
 - docker build -t ekellener/minecraft-amd64:12t -f Dockerfile.amd64 .
+- docker login -u $docker_username -p $docker_password
+- docker push  ekellener/minecraft-arm:12t
+- docker push  ekellener/minecraft-amd64:12t
+
+script:
+- docker run -d  -e docker_username=$docker_username -e docker_password=$docker_password -e manifest_platforms="linux/arm,linux/amd64" -e manifest_template="ekellener/minecraft-ARCH:12t" -e manifest_target="ekellener/minecraft-multi"  --name manifest-tool-build ekellener/manifest-tool-build
+
