@@ -5,7 +5,7 @@ services:
 - docker
 
 before_install:
-- sudo echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
+- sudo echo "deb http://ftp.de.debian.org/debian jessie-backports main" | sudo tee --append /etc/apt/sources.list
 - sudo apt-get update -qq
 - sudo apt-get -y install git zip avahi-daemon wget
 - sudo apt-get -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
