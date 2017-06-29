@@ -10,7 +10,7 @@ before_install:
 - sudo apt-key adv --keyserver pgpkeys.mit.edu --recv-key 8B48AD6246925553
 - sudo apt-key adv --keyserver pgpkeys.mit.edu --recv-key 7638D0442B90D010
 - sudo apt-get -y install git wget
-- sudo apt-get -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
+- sudo apt-get -y  jessie-backports  openjdk-8-jre-headless ca-certificates-java
 
 install:
 - wget -O /data/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar 
