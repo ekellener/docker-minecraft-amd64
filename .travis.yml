@@ -18,7 +18,7 @@ install:
 script:
 - docker run -d  -e docker_username=$docker_username -e docker_password=$docker_password
   -e manifest_platforms="linux/arm,linux/amd64" -e manifest_template="ekellener/minecraft-ARCH:12t"
-  -e manifest_target="ekellener/minecraft-multi"  --name manifest-tool-build ekellener/manifest-tool-build
+  -e manifest_target="ekellener/minecraft-multi"  --name manifest-tool-build ekellener/manifest-tool-docker
 env:
   global:
   - secure: kCupc5Sg5M6/hgK3qLgvmeXcR0UssYtghfU+hvvfggOq/tpLjvfqo4hsPjQYvQ8bt4841M9L2OrgcGi2+r9mhJUABRkiUkxyQ0+OF9NQp/u91/cV/Vaawk96OdQnPnkhu32N45vuhfKLK6yRsFLVNpmfQwG2Tn8hraPAlCaPLL2bXwHtTbcFDPXuuE/dxJkC3kkIus+C2AqKsk4u4YhmSmZDlhTfe1KHwrGiGseDbT7RZM9ezC3ELQUBDLbxR7HYL+ciFLX35J4b5l/p56GrN75P7bfXK8xTiWy3PmyKN2OABCYFkOvdLpUXmRlELTjDpLxELIpUpAQHcJ0VIRcM5zJRUireZeoqVEpDc7CCcM+ssZ9JjhsGi3HmsaFhoyk5wRtWucnYr4TQxbaFqhojKYfm4wKCeP2P0BlvGOKWkiB+YtWwl85Q0XhxgLCZgBhZJVHBoMsZrq9kD6o81+xthj3UXVEvucgZMEQVkvm+akJ8iRvZEjcL4EvJ2F8YodVIzQtKP7sVYUQjNQkMFolQwDjSEjsEsuqfF+27w26qHhAcz6Tbe6IgEmOCILHJ4rC4itppBChgaqZDiiojUpFxOV24dqPrZGycFd2YWuBHmkpd4RT4vigpab9U8ILmzjFBKj06Iqtp1sjKsjcnDPhIVe8S6mj3o0NuAla2YBqngC8=
