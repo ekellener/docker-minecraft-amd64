@@ -1,0 +1,11 @@
+language: java
+jdk:
+- openjdk8
+services:
+- docker
+
+install:
+- docker build -t ekellener/minecraft-amd64:12t .
+- docker run --entrypoint=/bin/sh --rm -i  -v ${PWD}:/host ekellener/minecraft-amd64:12t << COMMANDS  cp craft*.jar /host && cp spigot*.jar /host  COMMANDS
+- docker build -t ekellener/minecraft-arm:12t -f Dockerfile.arm .
+
