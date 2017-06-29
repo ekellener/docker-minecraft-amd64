@@ -9,8 +9,7 @@ before_install:
 - sudo echo "deb http://ftp.de.debian.org/debian jessie-backports main" | sudo tee --append /etc/apt/sources.list
 - sudo apt-key adv --keyserver pgpkeys.mit.edu --recv-key 8B48AD6246925553
 - sudo apt-key adv --keyserver pgpkeys.mit.edu --recv-key 7638D0442B90D010
-- sudo apt-get update -qq
-- sudo apt-get -y install git zip avahi-daemon wget
+- sudo apt-get -y install git wget
 - sudo apt-get -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
 
 install:
