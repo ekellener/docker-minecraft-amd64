@@ -15,6 +15,7 @@ install:
 - docker push  ekellener/minecraft-arm:12t
 - docker push  ekellener/minecraft-amd64:12t
 - docker pull ekellener/manifest-tool-docker
+
 script:
 - docker run -d  -e docker_username=$docker_username -e docker_password=$docker_password
   -e manifest_platforms="linux/arm,linux/amd64" -e manifest_template="ekellener/minecraft-ARCH:12t"
