@@ -5,10 +5,8 @@ jdk:
 services:
 - docker
 before_install:
-- sudo apt-get install -y  git wget openjdk-8-jre-headless ca-certificates-java
+- docker run --entrypoint=/bin/sh --rm -i  -v ${PWD}:/host ekellener/minecraft-build:12t -c 'cp craft*.jar /host'
 install:
-- wget -O BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-- java -jar BuildTools.jar
 - docker build -t ekellener/minecraft-arm:12t -f Dockerfile.arm .
 - docker build -t ekellener/minecraft-amd64:12t -f Dockerfile.amd64 .
 - docker login -u $docker_username -p $docker_password
