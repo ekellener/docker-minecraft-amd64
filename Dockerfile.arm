@@ -6,7 +6,8 @@ MAINTAINER Erik Kellener [erik@kellener.com]
 # Add Java 8
 RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 RUN apt-get update &&  apt-get -y install  git screen avahi-daemon wget 
-RUN apt install -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
+RUN apt install -y -t jessie-backports  openjdk-8-jre-headless 
+#ca-certificates-java
 RUN mkdir /data && cd /data
 # Copy built jars from previous dockerfile
 WORKDIR /
@@ -17,7 +18,7 @@ WORKDIR /data
 #For debugging
 #RUN apt-get install nano
 
-RUN mkdir -p /data/config
+#RUN mkdir -p /data/config
 COPY minecraft.sh /data/minecraft.sh
 COPY spigot.yml /data/spigot.yml
 
