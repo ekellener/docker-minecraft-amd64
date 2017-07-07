@@ -4,10 +4,12 @@ MAINTAINER Erik Kellener [erik@kellener.com]
 
 # apt netatalk
 # Add Java 8
-RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
-RUN apt-get update &&  apt-get -y install  git screen avahi-daemon wget 
-RUN apt install -y openjdk-7-jre-headless ca-certificates-java
-RUN apt install -y -t jessie-backports  openjdk-8-jre-headless 
+RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/sources.list
+RUN apt-get update &&  apt install -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java && update-alternatives --config java 
+RUN  apt-get -y install  git screen avahi-daemon wget 
+#RUN apt-get install -y software-properties-common && add-apt-repository ppa:webupd8team/java && apt-get update && apt-get install oracle-java8-installer
+#RUN apt-get update && apt-get -y install oracle-java8-jdk
+#RUN apt install -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java 
 RUN mkdir /data && cd /data
 # Copy built jars from previous dockerfile
 WORKDIR /
