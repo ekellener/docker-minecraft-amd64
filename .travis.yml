@@ -33,6 +33,6 @@ script:
   -e manifest_target="ekellener/minecraft-multi"  --name manifest-tool-build ekellener/manifest-tool-docker
 - if [ ! -f ${CACHE_FILE_BUILD} ]; then docker save ekellener/minecraft-build | gzip > ${CACHE_FILE_BUILD}; fi 
 - if [ ! -f ${CACHE_FILE_AMD64} ]; then docker save ekellener/minecraft-amd64 | gzip > ${CACHE_FILE_AMD64}; fi
-- if [ ! -f ${CACHE_FILE_ARM} ]; then docker save ekellener/minecraft-arm4 | gzip > ${CACHE_FILE_ARM}; fi
+- if [ ! -f ${CACHE_FILE_ARM} ]; then docker save ekellener/minecraft-arm     | gzip > ${CACHE_FILE_ARM}; fi
 - if [ ! -f ${CACHE_FILE_MANIFEST} ]; then docker save ekellener/manifest-tool-docker | gzip > ${CACHE_FILE_MANIFEST}; fi
 
