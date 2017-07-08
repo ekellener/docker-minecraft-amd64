@@ -5,7 +5,7 @@ MAINTAINER Erik Kellener [erik@kellener.com]
 # Add Java 8
 RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 RUN apt-get update && \
- apt-get -y install  git zip unzip screen avahi-daemon wget
+ apt-get -y install  git wget
 
 RUN apt install -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
 RUN mkdir /data 
@@ -15,9 +15,8 @@ WORKDIR /data
 #Build Spigot
 RUN cd /data && \
 wget -O /data/BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar  && \
-java -jar BuildTools.jar
-
-
+java -jar BuildTools.jar && \
+rm BuildTools.* && rm -rf Bukkit CraftBukkit Spigot apache-maven-3.2.5 work
 
 #edit /etc/default/tmpfs ensure RAMTMP=yes
 
