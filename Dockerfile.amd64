@@ -3,11 +3,17 @@ MAINTAINER Erik Kellener [erik@kellener.com]
 
 # apt netatalk
 # Add Java 8
-RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
-RUN apt-get update && \
- apt-get -y install  git screen avahi-daemon wget
-RUN apt install -y -t jessie-backports  openjdk-8-jre-headless ca-certificates-java
-#RUN mkdir /data && cd /data
+RUN apt-get remove openjdk*
+RUN apt-key adv --recv-key --keyserver keyserver.ubuntu.com EEA14886
+RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
+RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
+RUN apt-get -y update && apt-get -y  upgrade
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+RUN apt-get install -y  oracle-java8-installer
+RUN apt-get install -y oracle-java8-set-default
+RUN  apt-get -y install  git screen avahi-daemon wget 
+RUN mkdir /data && cd /data
 # Copy built jars from previous dockerfile
 WORKDIR /
 COPY *.jar /data/
@@ -17,7 +23,7 @@ WORKDIR /data
 #For debugging
 #RUN apt-get install nano
 
-RUN mkdir -p /data/config
+#RUN mkdir -p /data/config
 COPY minecraft.sh /data/minecraft.sh
 COPY spigot.yml /data/spigot.yml
 
