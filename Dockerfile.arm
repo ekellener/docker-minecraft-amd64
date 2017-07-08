@@ -1,15 +1,26 @@
+#FROM debian:jessie
 FROM resin/armv7hf-debian-qemu
 RUN [ "cross-build-start" ]
 MAINTAINER Erik Kellener [erik@kellener.com]
 
 # apt netatalk
 # Add Java 8
-RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/sources.list
-RUN apt-get purge ca-certificates-java
-RUN apt-get update && apt-get upgrade
+#RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/sources.list
+#RUN apt-get purge ca-certificates-java
+#RUN apt-get install debconf-utils
+RUN apt-get remove openjdk*
+RUN apt-key adv --recv-key --keyserver keyserver.ubuntu.com EEA14886
+RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
+RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list
+RUN apt-get -y update && apt-get -y  upgrade
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+RUN apt-get install -y  oracle-java8-installer
+RUN apt-get install -y oracle-java8-set-default
+
 #RUN apt-get install -f -y -t jessie-backports ca-certificates-java
-RUN apt-get install -f -y -t jessie-backports openjdk-8-jre-headless  
-RUN update-alternatives --config java 
+#RUN apt-get install -f -y -t jessie-backports openjdk-8-jre-headless  
+#RUN update-alternatives --config java 
 RUN  apt-get -y install  git screen avahi-daemon wget 
 #RUN apt-get install -y software-properties-common && add-apt-repository ppa:webupd8team/java && apt-get update && apt-get install oracle-java8-installer
 #RUN apt-get update && apt-get -y install oracle-java8-jdk
