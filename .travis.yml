@@ -15,6 +15,7 @@ cache:
 services:
 - docker
 before_install:
+- echo $CACHE_FILE_BUILD
 - if [ -f ${CACHE_FILE_BUILD} ]; then gunzip -c ${CACHE_FILE_BUILD} | docker load; fi
 - if [ -f ${CACHE_FILE_AMD64} ]; then gunzip -c ${CACHE_FILE_AMD64} | docker load; fi
 - if [ -f ${CACHE_FILE_ARM} ]; then gunzip -c ${CACHE_FILE_ARM} | docker load; fi
