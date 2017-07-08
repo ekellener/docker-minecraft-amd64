@@ -28,7 +28,7 @@ script:
 
 env:
   global:
-    - CACHE_DIR=$HOME/.cache.docker
+    - CACHE_DIR=$HOME/.cache/docker
     - CACHE_FILE_ARM=$CACHE_DIR/arm.tar.gz
     - CACHE_FILE_AMD64=$CACHE_DIR/amd64.tar.gz
     - CACHE_FILE_BUILD=$CACHE_DIR/build.tar.gz
