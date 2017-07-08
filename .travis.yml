@@ -6,9 +6,9 @@ before_install:
 - docker run --entrypoint=/bin/sh --rm -i  -v ${PWD}:/host ekellener/minecraft-build -c 'cp craft*.jar /host'
 install:
 - docker login -u $docker_username -p $docker_password
+- docker pull ekellener/manifest-tool-docker &
 - docker build -t ekellener/minecraft-arm -f Dockerfile.arm . && docker push ekellener/minecraft-arm &
 - docker build -t ekellener/minecraft-amd64 -f Dockerfile.amd64 . && docker push ekellener/minecraft-amd64 
-- docker pull ekellener/manifest-tool-docker
 
 script:
 - docker run -d  -e docker_username=$docker_username -e docker_password=$docker_password
