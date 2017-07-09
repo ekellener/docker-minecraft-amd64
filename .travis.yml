@@ -15,10 +15,9 @@ cache:
 services:
 - docker
 before_install:
-- echo $CACHE_FILE_BUILD
-- if [ -f ${CACHE_FILE_BUILD} ]; then gunzip -c ${CACHE_FILE_BUILD} | docker load; fi
-- if [ -f ${CACHE_FILE_AMD64} ]; then gunzip -c ${CACHE_FILE_AMD64} | docker load; fi
-- if [ -f ${CACHE_FILE_ARM} ]; then gunzip -c ${CACHE_FILE_ARM} | docker load; fi
+- if [ -f ${CACHE_FILE_BUILD} ];    then gunzip -c ${CACHE_FILE_BUILD} | docker load; fi
+- if [ -f ${CACHE_FILE_AMD64} ];    then gunzip -c ${CACHE_FILE_AMD64} | docker load; fi
+- if [ -f ${CACHE_FILE_ARM} ];      then gunzip -c ${CACHE_FILE_ARM}   | docker load; fi
 - if [ -f ${CACHE_FILE_MANIFEST} ]; then gunzip -c ${CACHE_FILE_MANIFEST} | docker
   load; fi
 - docker run --entrypoint=/bin/sh --rm -i  -v ${PWD}:/host ekellener/minecraft-build
@@ -34,5 +33,5 @@ script:
   -e manifest_target="ekellener/minecraft-multi"  --name manifest-tool-build ekellener/manifest-tool-docker
 - if [ ! -f ${CACHE_FILE_BUILD} ]; then docker save ekellener/minecraft-build | gzip  > ${CACHE_FILE_BUILD}; fi
 - if [ ! -f ${CACHE_FILE_AMD64} ]; then docker save ekellener/minecraft-amd64 | gzip  > ${CACHE_FILE_AMD64}; fi
-- if [ ! -f ${CACHE_FILE_ARM} ]; then docker save ekellener/minecraft-arm     | gzip  > ${CACHE_FILE_ARM}; fi
+- if [ ! -f ${CACHE_FILE_ARM} ];   then docker save ekellener/minecraft-arm   | gzip  > ${CACHE_FILE_ARM}; fi
 - if [ ! -f ${CACHE_FILE_MANIFEST} ]; then docker save ekellener/manifest-tool-docker | gzip > ${CACHE_FILE_MANIFEST}; fi
